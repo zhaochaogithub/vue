@@ -1,0 +1,29 @@
+<div id="app">
+    <!-- 显示普通值和HTML值 -->
+    <p>1.显示普通值</p>
+    <p>{{message}}</p>
+    <p>2.显示HTML值：v-html</p>
+    <p v-html="a"></p>
+    <!-- 强制绑定: 在前面加上一个冒号，或者v-bind -->
+    <p>3.强制绑定: 在前面加上一个冒号，或者v-bind</p>
+    <img :src="imageUrl" alt="">
+    <p>4.绑定事件监听：v-on或者@</p>
+    <buton v-on:click="test">v-on点击</buton>
+    <buton @click="test">@点击</buton>
+</div>
+<script src="../js/vue.js"></script>
+<script>
+    var app = new Vue({
+        el: '#app',
+        data: {
+            message: 'Hello Vue!',
+            a: '<a href="https://www.baidu.com" target="parent">跳转</a>',
+            imageUrl: 'https://www.baidu.com/img/PCfb_5bf082d29588c07f842ccde3f97243ea.png'
+        },
+        methods: {
+            test(e) {
+                alert(e.target.textContent)
+            }
+        }
+    })
+</script>
