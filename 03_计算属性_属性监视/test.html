@@ -1,0 +1,46 @@
+<div id="app">
+    <!-- 计算属性：computed -->
+    姓<input id="xing" type="text" v-model="xing" />
+    名<input id="ming" type="text" v-model="ming" />
+    <hr>
+    姓名1<input type="text" v-model="xingming1">
+    <hr>
+    <!-- 监视属性：wacth -->
+    姓名2<input type="text" v-model="xingming2">
+    <!-- 监视属性：$wacth -->
+    姓名3<input type="text" v-model="xingming3">
+    
+</div>
+<script src="../js/vue.js"></script>
+<script>
+    var app = new Vue({
+        el: '#app',
+        data: {
+            xing: '',
+            ming: '',
+            xingming2: '',
+            xingming3: ''
+        },
+        computed: {
+            xingming1() {
+                return this.xing + this.ming
+            }
+        },
+        watch: {
+            xing(newValue) {
+                // 这个里面的this指的是vm实例
+                console.log(this)
+                this.xingming2 = newValue + this.ming
+            },
+            ming(newValue) {
+                this.xingming2 = this.xing + newValue
+            }
+        }
+    })
+    app.$watch('xing', function(newValue) {
+        this.xingming3 = newValue + this.ming
+    });
+    app.$watch('ming', function(newValue) {
+        this.xingming3 = this.xing + newValue
+    });
+</script>

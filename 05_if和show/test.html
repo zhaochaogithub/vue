@@ -1,0 +1,22 @@
+<div id="app">
+    <!-- if条件：v-if v-else -->
+    <h1>if条件：v-if v-else</h1>
+    <p v-if="ok">展示</p>
+    <p v-else>不展示</p>
+    <button @click="ok=!ok">if切换</button>
+    <!-- show：v-show -->
+    <h1>show：v-show</h1>
+    <p v-show="show">展示</p>
+    <p v-show="!show">不展示</p>
+    <button @click="show=!show">show切换</button>
+</div>
+<script src="../js/vue.js"></script>
+<script>
+    var app = new Vue({
+        el: '#app',
+        data: {
+            ok: true,
+            show: true
+        }
+    })
+</script>
