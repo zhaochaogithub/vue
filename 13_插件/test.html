@@ -1,0 +1,17 @@
+<div id="app">
+    <p v-my-directive="msg"></p>
+</div>
+<script src="../js/vue.js"></script>
+<script src="./vue-plugin.js"></script>
+<script>
+    // 调用 `MyPlugin.install(Vue)`
+    Vue.use(MyPlugin)
+    Vue.myGlobalMethod()
+    var app = new Vue({
+        el: '#app',
+        data: {
+            msg: 'v-cloak'
+        }
+    })
+    app.$myMethod()
+</script>

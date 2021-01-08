@@ -1,0 +1,42 @@
+<div id="app">
+    <!-- 生命周期函数：
+        1) 初始化显示
+        * beforeCreate()
+        * created()
+        * beforeMount()
+        * mounted()
+        2) 更新状态: this.xxx = value
+        * beforeUpdate()
+        * updated()
+        3) 销毁 vue 实例: vm.$destory()
+        * beforeDestory()
+        * destoryed()
+
+        1) created()/mounted(): 发送 ajax 请求, 启动定时器等异步任务
+        2) beforeDestory(): 做收尾工作, 如: 清除定时器
+        mounted：渲染之后自动执行
+        destroyed：死亡之后自动执行
+    -->
+    <button @click="destroy">destroy</button>
+    <p v-show="ok"  >123</p>
+</div>
+<script src="../js/vue.js"></script>
+<script>
+    var app = new Vue({
+        el: '#app',
+        data: {
+            ok: true
+        },
+        mounted () {
+            this.intervalId = setInterval(() => {
+                this.ok = !this.ok
+            }, 1000);
+        },
+        methods: {
+            destroy() {
+                clearInterval(this.intervalId)
+                this.$destroy();
+            }
+        }
+    })
+</script>

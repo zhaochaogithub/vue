@@ -1,0 +1,41 @@
+<div id="app">
+    <!-- 事件：event -->
+    <button @click="test">event</button>
+    <button @click="test2(1, $event)">$event</button>
+    <!-- 阻止冒泡事件：.stop -->
+    <div @click="test3" style="width: 100px; height: 100px; background-color: red;">
+        <div  @click.stop="test4" style="width: 50px; height: 50px; background-color: green;"></div>
+    </div>
+    <!-- 阻止默认事件：.prevent -->
+    <a href="http://www.baidu.com" @click.prevent="test5">跳转</a>
+    <!-- @keyUp事件，.13回车事件 -->
+    <input type="text" @keyUp.13="test6" />
+</div>
+<script src="../js/vue.js"></script>
+<script>
+    var app = new Vue({
+        el: '#app',
+        data: {
+        },
+        methods: {
+            test(event) {
+                alert(event.target.innerHTML);
+            },
+            test2(number, event) {
+                alert(number + " " + event.target.innerHTML);
+            },
+            test3() {
+                alert("out");
+            },
+            test4() {
+                alert("inner");
+            },
+            test5() {
+                alert("prevent");
+            },
+            test6(event) {
+                alert(event.target.value);
+            }
+        }
+    })
+</script>

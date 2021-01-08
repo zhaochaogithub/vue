@@ -1,0 +1,48 @@
+<div id="app">
+    <!-- 排序 -->
+    <input type="text" name="" v-model="searchName">
+    <ul>
+        <li v-for="(p, index) in filterNames">
+            {{p.name}}-{{p.age}}-
+        </li>
+    </ul>
+    <button @click="order(1)">升序</button>
+    <button @click="order(2)">降序</button>
+    <button @click="order(0)">恢复</button>
+</div>
+<script src="../js/vue.js"></script>
+<script>
+    var app = new Vue({
+        el: '#app',
+        data: {
+            person: [
+                {name: 'Jack1', age: 20},
+                {name: 'Tom', age: 22},
+                {name: 'Cat', age: 21}
+            ],
+            searchName: '',
+            orderType: 0
+        },
+        computed: {
+            filterNames() {
+                const { person, searchName, orderType } = this
+                let filterNames = person.filter(function(p) {
+                        if(p.name.indexOf(searchName) !== -1) return true
+                });
+                
+                if(orderType !== 0) {
+                    filterNames.sort((p1, p2) => {
+                        if(orderType == 1) return p1.age - p2.age
+                        else return p2.age - p1.age
+                    })
+                }
+                return filterNames;
+            }
+        },
+        methods: {
+            order(orderType) {
+                this.orderType = orderType;
+            }
+        }
+    })
+</script>

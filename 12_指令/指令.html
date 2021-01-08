@@ -1,0 +1,29 @@
+<div id="app">
+    <p v-upper-text="msg"></p>
+    <p v-lower-text="msg"></p>
+</div>
+<script src="../js/vue.js"></script>
+<script>
+    /* 自定义全局指令
+        Vue.directive(指令名, function(el, binding));
+    */
+    Vue.directive('upper-text', function(el, binding) {
+        console.log(el, binding)
+        el.innerHTML = binding.value.toUpperCase()
+    })
+    var app = new Vue({
+        el: '#app',
+        data: {
+            msg: 'v-cloak'
+        },
+        /* 自定义局部指令
+            directives(el, function);
+        */
+        directives: {
+            'lower-text'(el, binding) {
+                console.log(el, binding)
+                el.innerHTML = binding.value.toLowerCase()
+            }
+        }
+    })
+</script>

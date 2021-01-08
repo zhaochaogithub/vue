@@ -1,0 +1,57 @@
+<div id="app">
+    <button @click="test">toggle</button>
+    <!-- 动画：transition 渐入渐出-->
+    <transition name="fade">
+        <p v-show="ok">内容</p>
+    </transition>
+    <hr>
+    <!-- 动画：transition 带有移动的渐入渐出 -->
+    <button @click="test2">toggle</button>
+    <!-- 动画：transition 渐入渐出-->
+    <transition name="xxx">
+        <p v-show="move">带有移动的渐入渐出</p>
+    </transition>
+</div>
+<style>
+    /* 显示|隐藏 */
+    .fade-enter-active, .fade-leave-active {
+        transition: opacity 1s; 
+    }
+    /* 进入之前和离开之后 */
+    .fade-enter, .fade-leave-to {
+        opacity: 0;
+    }
+    /* 进入之后和离开之前 */
+    .fade-enter-to, .fade-leave {
+        opacity: 1;
+    }
+    /* ---------------- */
+    /*  */
+    /* 进入 | 离开 */
+    .xxx-enter-active, .xxx-leave-active {
+        transition: all 1s; 
+    }
+    /* 进入之前和离开之后 */
+    .xxx-enter, .xxx-leave-to {
+        opacity: 0;
+        transform: translateX(20px);
+    }
+</style>
+<script src="../js/vue.js"></script>
+<script>
+    var app = new Vue({
+        el: '#app',
+        data: {
+            ok: true,
+            move: true
+        },
+        methods: {
+            test() {
+                this.ok = !this.ok
+            },
+            test2() {
+                this.move = !this.move
+            }
+        }
+    })
+</script>

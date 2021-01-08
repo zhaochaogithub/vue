@@ -1,0 +1,17 @@
+<div id="app">
+    <p>{{data | dateFormat('YYYY-MM-DD HH:mm:ss')}}</p>
+</div>
+<script src="../js/vue.js"></script>
+<script src="https://cdn.bootcdn.net/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+<script>
+    // 日期格式化
+    Vue.filter('dateFormat', function (value, format) {
+        return moment(value).format(format | 'YYYY-MM-DD')
+    })
+    var app = new Vue({
+        el: '#app',
+        data: {
+            date: new Date()
+        }
+    })
+</script>

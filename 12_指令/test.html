@@ -1,0 +1,29 @@
+<div id="app">
+    <!-- ref以及refs -->
+    <p ref="content">ref使用</p>
+    <button @click="hit">点击获取ref</button>
+    <!-- 防止闪现:
+        1. 增加v-cloak
+        2. 样式增加 [v-cloak]
+    -->
+    <p v-cloak>{{msg}}</p>
+</div>
+<style>
+    [v-cloak] {
+        display: none;
+    }
+</style>
+<script src="../js/vue.js"></script>
+<script>
+    var app = new Vue({
+        el: '#app',
+        data: {
+            msg: 'v-cloak'
+        },
+        methods: {
+            hit() {
+                alert(this.$refs.content.textContent)
+            }
+        }
+    })
+</script>

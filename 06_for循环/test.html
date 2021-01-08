@@ -1,0 +1,33 @@
+<div id="app">
+    <!-- for循环：v-for -->
+    <ul>
+        <li v-for="(item, index) in names">{{item}}-{{index}}
+            <button @click="updated(index, 'zs')">更新</button>-<button @click="deleted(index)">删除</button>
+        </li>
+    </ul>
+    <ul>
+        <li v-for="(item, key) in person">{{key}}: {{item}}</li>
+    </ul>
+</div>
+<script src="../js/vue.js"></script>
+<script>
+    var app = new Vue({
+        el: '#app',
+        data: {
+            names:['jane', 'rols', 'tom'],
+            person: {
+                name: 'roles',
+                age: 20
+            }
+        },
+        methods: {
+            updated(index, newP) {
+                this.names.splice(index, 1, newP);
+            },
+            deleted(index) {
+                // 删除
+                this.names.splice(index, 1);
+            }
+        }
+    })
+</script>
